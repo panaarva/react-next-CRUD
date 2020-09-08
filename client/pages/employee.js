@@ -1,6 +1,7 @@
 import Table from "../Components/Table";
 import React from "react";
-import axios from 'axios'
+import axios from 'axios';
+import {apiUrl} from "../src/config";
 
 function Employee({employee, department}) {
     let depart = {};
@@ -27,8 +28,8 @@ function Employee({employee, department}) {
 export const getServerSideProps = async () => {
     let data;
     let department;
-    data = await axios.get('http://localhost:9002/employee');
-    department = await axios.get('http://localhost:9002/department');
+    data = await axios.get(`${apiUrl}/employee`);
+    department = await axios.get(`${apiUrl}/department`);
     return {props: {employee: data.data, department: department.data}}
 }
 

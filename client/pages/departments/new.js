@@ -4,6 +4,6 @@ import FormDepartment from "../../Components/FormDepartment";
 export default function AddEmployee() {
 
     return (
-            <FormDepartment/>
+            <FormDepartment flag={false}/>
     )
 }

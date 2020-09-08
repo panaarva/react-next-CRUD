@@ -1,6 +1,7 @@
 import Table from '../Components/Table'
 import React from "react";
 import axios from "axios";
+import {apiUrl} from "../src/config";
 
 function Home({data}) {
     const columns = [
@@ -16,7 +17,7 @@ function Home({data}) {
 
 export const getServerSideProps = async () => {
     let data;
-    data = await axios.get('http://localhost:9002/department');
+    data = await axios.get(`${apiUrl}/department`);
     return {props: {data: data.data}}
 }
 

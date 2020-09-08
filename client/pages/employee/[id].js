@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from "axios";
 import Profile from "../../Components/Profile";
+import {apiUrl} from "../../src/config";
 
 export default function viewEmployee({data}) {
     return (
@@ -11,6 +12,6 @@ export default function viewEmployee({data}) {
     )
 }
 export const getServerSideProps = async (context) => {
-    const res = await axios.get(`http://localhost:9002/employee/specific?id=${context.query.id}`);
+    const res = await axios.get(`${apiUrl}/employee/specific?id=${context.query.id}`);
     return {props: {data: res.data}}
 }
