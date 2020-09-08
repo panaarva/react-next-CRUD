@@ -12,6 +12,7 @@
     "express": "~4.16.1",
     "http": "0.0.1-security",
     "http-errors": "^1.6.3",
+    "http-proxy-middleware": "^1.0.5",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "path": "^0.12.7",
