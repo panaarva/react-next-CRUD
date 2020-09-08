@@ -29,6 +29,7 @@ router.get('/specific', async (req, res, next) => {
 })
 //ADD New Employee
 router.post('/', async (req, res, next) => {
+    console.log("ok");
     const {firstname, lastname, startDate, depId} = req.body;
     try {
         const response = await client.query(`INSERT INTO public.employee (fName, lName, startDate, deptId)

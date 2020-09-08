@@ -29,6 +29,7 @@ router.get('/specific/:id', async (req, res, next) => {
 //ADD New Department
 router.post('/', async (req, res, next) => {
   const {id,name} = req.body;
+  console.log(id,name)
   try {
     const response = await client.query(`INSERT INTO public.department (id, name)
                                              VALUES ($1, $2)`, [id, name]);
