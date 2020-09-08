@@ -12,6 +12,8 @@ import Container from "@material-ui/core/Container";
 import {makeStyles} from '@material-ui/core/styles';
 import Select from "@material-ui/core/Select";
 import axios from "axios";
+import {apiUrl} from '../src/config'
+import {useRouter} from 'next/router';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FormEmployee({data, employee, flag, id}) {
+    const router = useRouter();
     const classes = useStyles()
     return (
         <Fragment>
@@ -84,10 +87,11 @@ export default function FormEmployee({data, employee, flag, id}) {
                         onSubmit={(values) => {
                             setTimeout(async () => {
                                 if (flag) {
-                                    await axios.put(`http://localhost:9002/employee/${id}`, values);
+                                    await axios.put(`${apiUrl}/employee/${id}`, values);
                                 } else {
-                                    await axios.post('http://localhost:9002/employee', values)
+                                    await axios.post(`${apiUrl}/employee`, values)
                                 }
+                                router.push('/employee');
                             }, 400);
                         }}
                     >

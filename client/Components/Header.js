@@ -1,8 +1,7 @@
-import Link from 'next/link'
-import {AppBar, Link as LinkMaterial, Tab, Tabs, Toolbar} from "@material-ui/core";
-import React from "react";
+import {AppBar, Tab, Tabs, Toolbar} from "@material-ui/core";
+import React, {useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import {useRouter} from 'next/router'
 
 function a11yProps(index) {
     return {
@@ -35,8 +34,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
-    const [value, setValue] = React.useState();
+    const [value, setValue] = useState();
     const classes = useStyles();
+    const router = useRouter()
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -47,12 +47,10 @@ function Header() {
                     <Toolbar className={classes.toolbar}>
                         <Tabs value={value} onChange={handleChange}
                               aria-label="simple tabs example">
-                            <Link href="/" as="/">
-                                <Tab label="Department" value="department" {...a11yProps(0)}/>
-                            </Link>
-                            <Link href="/employee" as="/employee">
-                                <Tab label="Employee" value="employee" {...a11yProps(0)}/>
-                            </Link>
+                            <Tab label="Department" value="department" {...a11yProps(0)}
+                                 onClick={() => router.push('/', undefined, {shallow: true})}/>/>
+                            <Tab label="Employee" value="employee" {...a11yProps(0)}
+                                 onClick={() => router.push('/employee', undefined, {shallow: true})}/>
                         </Tabs>
                         <div className={classes.grow}/>
 

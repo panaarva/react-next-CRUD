@@ -1,6 +1,6 @@
 import React, {forwardRef} from "react";
 import MaterialTable from 'material-table';
-import Router from 'next/router';
+import Router,{useRouter} from 'next/router';
 import {
     AddBox,
     ArrowDownward,
@@ -21,7 +21,7 @@ import {
 } from '@material-ui/icons';
 import axios from 'axios';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import {useRouter} from "next/router";
+import {apiUrl} from '../src/config'
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
@@ -48,9 +48,9 @@ export default function Table({title,data,columns,url,updateUrl}) {
     const deleteData = async (id) => {
         try {
             if (title === 'Employee') {
-                await axios.delete(`http://localhost:9002/employee?employeeId=${id}`);
+                await axios.delete(`${apiUrl}/employee?employeeId=${id}`);
             } else {
-                await axios.delete(`http://localhost:9002${updateUrl}${id}`);
+                await axios.delete(`${apiUrl}${updateUrl}${id}`);
             }
         } catch (err) {
             console.error(err);

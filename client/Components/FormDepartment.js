@@ -9,6 +9,8 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from '@material-ui/core/styles';
 import axios from 'axios';
+import {apiUrl} from '../src/config';
+import {useRouter} from 'next/router';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,8 +46,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function FormDepartment({data,depid,flag}) {
-    const classes = useStyles()
+export default function FormDepartment({data, depid, flag}) {
+    const router = useRouter();
+    const classes = useStyles();
     return (
         <Fragment>
             <Container component="main" maxWidth="xs">
@@ -58,7 +61,7 @@ export default function FormDepartment({data,depid,flag}) {
                         ADD New Department
                     </Typography>
                     <Formik
-                        initialValues={{name: (data)?data[0].name:'', id: (data)?data[0].id:''}}
+                        initialValues={{name: (data) ? data[0].name : '', id: (data) ? data[0].id : ''}}
                         validate={values => {
                             const errors = {};
                             if (!values.name) {
@@ -71,15 +74,13 @@ export default function FormDepartment({data,depid,flag}) {
                         }}
                         onSubmit={(values, {setSubmitting}) => {
                             console.log(values)
-                            //setTimeout(async () => {
-                               // alert("ok")
-                                if(flag){
-                                    axios.put(`http://localhost:9002/department/${depid}`, values);
-                                }else{
-                                    axios.post('http://localhost:9002/department',values)
-                                }
-                                setSubmitting(false);
-                           // }, 400);
+                            if (flag) {
+                                axios.put(`${apiUrl}/department/${depid}`, values);
+                            } else {
+                                axios.post(`${apiUrl}/department`, values)
+                            }
+                            router.push('/');
+                            setSubmitting(false);
                         }}
                     >
                         {({
