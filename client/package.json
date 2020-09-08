@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "proxy": "http://localhost:80/",
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 3005"
   },
-  "proxy": "http://localhost:9002",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -24,6 +24,8 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
     "yup": "^0.29.3"
   }
 }
