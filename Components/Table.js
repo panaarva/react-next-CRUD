@@ -42,14 +42,14 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>)
 };
 
-export default function Table({title, data, columns, url, updateUrl}) {
+export default function Table({title, data, columns, url, updateUrl, localhost}) {
     const router = useRouter();
     const deleteData = async (id) => {
         try {
             if (title === 'Employee') {
-                await axios.delete(`/employee?employeeId=${id}`);
+                await axios.delete(`http://${localhost}/employee?employeeId=${id}`);
             } else {
-                await axios.delete(`${updateUrl}${id}`);
+                await axios.delete(`http://${localhost}${updateUrl}${id}`);
             }
         } catch (err) {
             console.error(err);

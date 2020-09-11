@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function FormDepartment({data, depid, flag}) {
+export default function FormDepartment({data, depid, flag,localhost}) {
     const router = useRouter();
     const classes = useStyles();
     return (
@@ -62,9 +62,9 @@ export default function FormDepartment({data, depid, flag}) {
                         onSubmit={(values, {setSubmitting}) => {
                             console.log(values)
                             if (flag) {
-                                axios.put(`/department/${depid}`, values);
+                                axios.put(`http://${localhost}/department/${depid}`, values);
                             } else {
-                                axios.post(`/department`, values)
+                                axios.post(`http://${localhost}/department`, values)
                             }
                             router.push('/');
                             setSubmitting(false);

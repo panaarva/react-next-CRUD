@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function FormEmployee({data, employee, flag, id}) {
+export default function FormEmployee({data, employee, flag, id, localhost}) {
     const router = useRouter();
     const classes = useStyles()
     return (
@@ -86,9 +86,9 @@ export default function FormEmployee({data, employee, flag, id}) {
                         onSubmit={(values) => {
                             setTimeout(async () => {
                                 if (flag) {
-                                    await axios.put(`/employee/${id}`, values);
+                                    await axios.put(`http://${localhost}/employee/${id}`, values);
                                 } else {
-                                    await axios.post(`/employee`, values)
+                                    await axios.post(`http://${localhost}/employee`, values)
                                 }
                                 router.push('/employees');
                             }, 400);
@@ -159,7 +159,7 @@ export default function FormEmployee({data, employee, flag, id}) {
                                             id: 'depId',
                                         }}
                                     >
-                                        <option value='none'> </option>
+                                        <option value='none'/>
                                         {data.map((data) => <option value={data.id}>{data.name}</option>)}
                                     </Select>
                                 </FormControl>
