@@ -1,6 +1,6 @@
 
 const {Pool} = require('pg');
 exports.pool = new Pool({
-    connectionString: 'postgres://krrudgocngkwmx:b307fe80bdcaeb1825606173a38bcd11778a9b78332edb321a3609c95f032fc1@ec2-54-75-150-32.eu-west-1.compute.amazonaws.com:5432/de6g0vt6hnieqp'
+    connectionString: 'postgres://rvxfsqlulhpphm:da2bfe91bfdb0f7e197624559651475678b11d4d2d6604f11c252bd975a793f8@ec2-52-48-65-240.eu-west-1.compute.amazonaws.com:5432/d6u5k9nv28q1v6'
 });
 exports.privateKey = `kn0wled9e#1998`;
