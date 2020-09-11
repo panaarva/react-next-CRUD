@@ -1,13 +1,10 @@
 {
-  "name": "client",
+  "name": "react-nextjs",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "proxy": "http://localhost:80/",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start -p 3005"
+    "start": "cd server && npm install && NODE_ENV=production node ../api.js",
+    "heroku-postbuild": "npm install --only=dev && npm install && next build"
   },
   "keywords": [],
   "author": "",
@@ -17,11 +14,13 @@
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.20.0",
     "formik": "^2.1.5",
+    "http": "0.0.1-security",
     "material-table": "^1.69.0",
     "next": "^9.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "webpack-cli": "^3.3.12",
