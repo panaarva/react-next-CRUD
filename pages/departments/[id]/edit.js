@@ -1,7 +1,6 @@
 import React from 'react'
 import FormDepartment from "../../../Components/FormDepartment";
 import axios from "axios";
-import {apiUrl} from "../../../src/config";
 
 export default function AddEmployee({data, id}) {
 
@@ -13,6 +12,6 @@ export default function AddEmployee({data, id}) {
 }
 export const getServerSideProps = async (context) => {
     const {id} = context.params
-    const data = await axios.get(`${apiUrl}/department/specific/${id}`);
+    const data = await axios.get(`/department/specific/${id}`);
     return {props: {data: data.data, id}}
 }
