@@ -9,14 +9,7 @@ const app = next({dev, dir: '../'});
 const handle = app.getRequestHandler();
 express.get('*', (req, res) => {
     const parsedUrl = parse(req.url, true)
-    const { pathname, query } = parsedUrl
-    if (pathname === '/employee') {
-        return app.render(req, res, '/employee', query)
-    } else if (pathname === '/') {
-        return app.render(req, res, '/', query)
-    } else {
-        return handle(req, res, parsedUrl)
-    }
+    return handle(req, res, parsedUrl);
 });
 app.prepare().then(() => {
     const server = http.createServer(express);
