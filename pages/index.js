@@ -16,9 +16,8 @@ function Home({data,localhost}) {
 
 export const getServerSideProps = async ({req}) => {
     const localhost = req.headers.host;
-    console.log(localhost);
     let data;
-    data = await axios.get(`${localhost}/department`);
+    data = await axios.get(`http://${localhost}/department`);
     return {props: {data: data.data,localhost}}
 }
 
