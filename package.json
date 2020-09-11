@@ -1,7 +1,7 @@
 {
   "name": "react-nextjs",
   "version": "1.0.0",
-  "proxy": "http://localhost:80/",
+  "proxy": "http://localhost:9000/",
   "scripts": {
     "start": "cd server && npm install && node ../api.js",
     "heroku-postbuild": "npm install --only=dev && npm install && next build"
