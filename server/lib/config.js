@@ -1,3 +1,4 @@
+
 const {Pool} = require('pg');
 exports.pool = new Pool({
     user: 'nextjs',
