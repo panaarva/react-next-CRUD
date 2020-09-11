@@ -20,7 +20,7 @@ function Employee({employee, department,localhost}) {
     ];
 
     return (
-        <Table title="Employee" columns={columns} localhost={localhost} data={employee} url='/employee/new'/>
+        <Table title="Employee" columns={columns} localhost={localhost} data={employee} url='/employees/new'/>
     )
 }
 
