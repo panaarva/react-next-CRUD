@@ -11,6 +11,8 @@ export default function viewEmployee({data}) {
     )
 }
 export const getServerSideProps = async (context) => {
-    const res = await axios.get(`/employee/specific?id=${context.query.id}`);
+    const {req} = context;
+    const localhost = req.headers.host;
+    const res = await axios.get(`http://${localhost}/employee/specific?id=${context.query.id}`);
     return {props: {data: res.data}}
 }

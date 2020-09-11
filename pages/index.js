@@ -2,7 +2,7 @@ import Table from '../Components/Table'
 import React from "react";
 import axios from "axios";
 
-function Home({data}) {
+function Home({data,localhost}) {
     const columns = [
         {id: "id", title: 'Id Department', field: 'id', type: 'string'},
         {title: "Name Department", field: 'name', type: 'string', id: 'name'}
@@ -10,14 +10,15 @@ function Home({data}) {
 
     return (
         <Table title={"Department"} data={data} columns={columns} url='/departments/new'
-               updateUrl='/department?departId='/>
+               updateUrl='/department?departId=' localhost={localhost}/>
     )
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({req}) => {
+    const localhost = req.headers.host;
     let data;
-    data = await axios.get(`/department`);
-    return {props: {data: data.data}}
+    data = await axios.get(`http://${localhost}/department`);
+    return {props: {data: data.data,localhost}}
 }
 
 export default Home

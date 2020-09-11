@@ -2,7 +2,7 @@ import Table from "../Components/Table";
 import React from "react";
 import axios from 'axios';
 
-function Employee({employee, department}) {
+function Employee({employee, department,localhost}) {
     let depart = {};
     department.forEach((dep) => {
         depart = {...depart, [dep.id]: dep.name}
@@ -20,16 +20,17 @@ function Employee({employee, department}) {
     ];
 
     return (
-        <Table title="Employee" columns={columns} data={employee} url='/employee/new'/>
+        <Table title="Employee" columns={columns} localhost={localhost} data={employee} url='/employee/new'/>
     )
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({req}) => {
+    const localhost = req.headers.host;
     let data;
     let department;
-    data = await axios.get(`/employee`);
-    department = await axios.get(`/department`);
-    return {props: {employee: data.data, department: department.data}}
+    data = await axios.get(`http://${localhost}/employee`);
+    department = await axios.get(`http://${localhost}/department`);
+    return {props: {employee: data.data, department: department.data,localhost}}
 }
 
 export default Employee
