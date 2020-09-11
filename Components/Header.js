@@ -49,8 +49,8 @@ function Header() {
                               aria-label="simple tabs example">
                             <Tab label="Department" value="department" {...a11yProps(0)}
                                  onClick={() => router.push('/', undefined, {shallow: true})}/>/>
-                            <Tab label="Employee" value="employee" {...a11yProps(0)}
-                                 onClick={() => router.push('/employee', undefined, {shallow: true})}/>
+                            <Tab label="Employee" value="employees" {...a11yProps(0)}
+                                 onClick={() => router.push('/employees', undefined, {shallow: true})}/>
                         </Tabs>
                         <div className={classes.grow}/>
 

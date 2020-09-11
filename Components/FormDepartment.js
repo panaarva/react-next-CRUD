@@ -9,7 +9,6 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from '@material-ui/core/styles';
 import axios from 'axios';
-import {apiUrl} from '../src/config';
 import {useRouter} from 'next/router';
 
 
@@ -31,18 +30,6 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
-    },
-    pass: {
-        width: "100%",
-        margin: theme.spacing(1, 0, 0)
-    },
-    success: {
-        backgroundColor: "green"
-    },
-    formControl: {
-        width: '100%',
-        margin: theme.spacing(1, 0, 0),
-        minWidth: 120,
     }
 }));
 
@@ -75,9 +62,9 @@ export default function FormDepartment({data, depid, flag}) {
                         onSubmit={(values, {setSubmitting}) => {
                             console.log(values)
                             if (flag) {
-                                axios.put(`${apiUrl}/department/${depid}`, values);
+                                axios.put(`/department/${depid}`, values);
                             } else {
-                                axios.post(`${apiUrl}/department`, values)
+                                axios.post(`/department`, values)
                             }
                             router.push('/');
                             setSubmitting(false);

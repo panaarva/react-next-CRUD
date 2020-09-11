@@ -1,6 +1,6 @@
 import React, {forwardRef} from "react";
 import MaterialTable from 'material-table';
-import Router,{useRouter} from 'next/router';
+import Router, {useRouter} from 'next/router';
 import {
     AddBox,
     ArrowDownward,
@@ -21,7 +21,6 @@ import {
 } from '@material-ui/icons';
 import axios from 'axios';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import {apiUrl} from '../src/config'
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
@@ -43,14 +42,14 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>)
 };
 
-export default function Table({title,data,columns,url,updateUrl}) {
+export default function Table({title, data, columns, url, updateUrl}) {
     const router = useRouter();
     const deleteData = async (id) => {
         try {
             if (title === 'Employee') {
-                await axios.delete(`${apiUrl}/employee?employeeId=${id}`);
+                await axios.delete(`/employee?employeeId=${id}`);
             } else {
-                await axios.delete(`${apiUrl}${updateUrl}${id}`);
+                await axios.delete(`${updateUrl}${id}`);
             }
         } catch (err) {
             console.error(err);
@@ -70,8 +69,8 @@ export default function Table({title,data,columns,url,updateUrl}) {
                     tooltip: "Profile",
                     onClick: (event, rowData) => {
                         const {id} = rowData;
-                        if(title === 'Employee')
-                            router.push(`/employee/${id}`)
+                        if (title === 'Employee')
+                            router.push(`/employees/${id}`)
                     }
                 },
                 {
@@ -85,16 +84,16 @@ export default function Table({title,data,columns,url,updateUrl}) {
                 {
                     icon: Edit,
                     tooltip: `Edit ${title}`,
-                    onClick: (event,rowData) => {
+                    onClick: (event, rowData) => {
                         const {id} = rowData
-                        if(title === 'Employee')
-                        router.push(`/employee/${id}/edit`)
+                        if (title === 'Employee')
+                            router.push(`/employees/${id}/edit`)
                         else router.push(`/departments/${id}/edit`)
                     }
                 }
             ]}
             editable={{
-                onRowDelete:async (oldData) => {
+                onRowDelete: async (oldData) => {
                     await deleteData(data[oldData.tableData.id].id)
                     Router.reload(window.location.pathname);
                 }
