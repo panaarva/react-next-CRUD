@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "proxy": "http://localhost:80/",
   "scripts": {
-    "start": "cd server && npm install && NODE_ENV=production node ../api.js",
+    "start": "cd server && npm install && node ../api.js",
     "heroku-postbuild": "npm install --only=dev && npm install && next build"
   },
   "keywords": [],
