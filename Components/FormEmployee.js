@@ -86,7 +86,7 @@ export default function FormEmployee({data, employee, flag, id, localhost}) {
                         onSubmit={(values) => {
                             setTimeout(async () => {
                                 if (flag) {
-                                    await axios.put(`http://${localhost}/employee/${id}`, values);
+                                    await axios.put(`/employee/${id}`, values);
                                 } else {
                                     await axios.post(`/employee`, values)
                                 }

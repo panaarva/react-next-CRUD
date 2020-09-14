@@ -47,9 +47,9 @@ export default function Table({title, data, columns, url, updateUrl, localhost})
     const deleteData = async (id) => {
         try {
             if (title === 'Employee') {
-                await axios.delete(`http://${localhost}/employee?employeeId=${id}`);
+                await axios.delete(`/employee?employeeId=${id}`);
             } else {
-                await axios.delete(`http://${localhost}${updateUrl}${id}`);
+                await axios.delete(`${updateUrl}${id}`);
             }
         } catch (err) {
             console.error(err);

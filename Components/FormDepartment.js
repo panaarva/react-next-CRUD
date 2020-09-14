@@ -62,9 +62,9 @@ export default function FormDepartment({data, depid, flag,localhost}) {
                         onSubmit={(values, {setSubmitting}) => {
                             console.log(values)
                             if (flag) {
-                                axios.put(`http://${localhost}/department/${depid}`, values);
+                                axios.put(`/department/${depid}`, values);
                             } else {
-                                axios.post(`http://${localhost}/department`, values)
+                                axios.post(`/department`, values)
                             }
                             router.push('/');
                             setSubmitting(false);
