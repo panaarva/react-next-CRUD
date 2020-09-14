@@ -36,6 +36,7 @@ router.post('/', async (req, res, next) => {
                                              VALUES ($1, $2, $3, $4)`, [firstname, lastname, new Date(startDate), Number(depId)]);
         res.status(200).send("success");
     } catch (e) {
+        console.log(e);
         next(createError(404, 'NOT FOUND'));
     }
 })
