@@ -88,7 +88,7 @@ export default function FormEmployee({data, employee, flag, id, localhost}) {
                                 if (flag) {
                                     await axios.put(`http://${localhost}/employee/${id}`, values);
                                 } else {
-                                    await axios.post(`http://${localhost}/employee`, values)
+                                    await axios.post(`/employee`, values)
                                 }
                                 router.push('/employees');
                             }, 400);
