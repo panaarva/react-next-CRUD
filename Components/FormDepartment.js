@@ -56,6 +56,8 @@ export default function FormDepartment({data, depid, flag}) {
                             }
                             if (!values.id) {
                                 errors.id = 'Required';
+                            }else if(!Number(values.id)){
+                                errors.id = 'Mη αποδεκτά δεδομένα';
                             }
                             return errors;
                         }}
@@ -64,11 +66,15 @@ export default function FormDepartment({data, depid, flag}) {
                                 if (flag) {
                                     await axios.put(`/department/${depid}`, values);
                                 } else {
-                                    await axios.post(`/department`, values).then(()=>{
-                                        router.push('/');
-                                    }).catch(()=>{
-                                        setSubmitting(false);
-                                        setErrors({id:'This id already used!!'})
+                                    await axios.post(`/department`, values).then((res)=>{
+                                        if(res.status){
+                                            setSubmitting(false);
+                                            setErrors({id:res.data.message})
+                                        }else{
+                                            router.push('/');
+                                        }
+                                    }).catch((err)=>{
+                                        console.log(err);
                                     })
                                 }
                             }, 400);
