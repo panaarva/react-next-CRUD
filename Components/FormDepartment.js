@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function FormDepartment({data, depid, flag,localhost}) {
+export default function FormDepartment({data, depid, flag}) {
     const router = useRouter();
     const classes = useStyles();
     return (
@@ -59,15 +59,20 @@ export default function FormDepartment({data, depid, flag,localhost}) {
                             }
                             return errors;
                         }}
-                        onSubmit={(values, {setSubmitting}) => {
-                            console.log(values)
-                            if (flag) {
-                                axios.put(`/department/${depid}`, values);
-                            } else {
-                                axios.post(`/department`, values)
-                            }
-                            router.push('/');
-                            setSubmitting(false);
+                        onSubmit={(values, {setSubmitting,setErrors}) => {
+                            setTimeout(async () => {
+                                if (flag) {
+                                    await axios.put(`/department/${depid}`, values);
+                                } else {
+                                    await axios.post(`/department`, values).then(()=>{
+                                        router.push('/');
+                                    }).catch(()=>{
+                                        setSubmitting(false);
+                                        setErrors({id:'This id already used!!'})
+                                    })
+                                }
+                            }, 400);
+
                         }}
                     >
                         {({
