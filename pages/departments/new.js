@@ -9,6 +9,5 @@ export default function AddEmployee({localhost}) {
 }
 export const getServerSideProps = async ({req}) => {
     const localhost = req.headers.host;
-    console.log(req.headers.host);
     return {props: {localhost}}
 }
